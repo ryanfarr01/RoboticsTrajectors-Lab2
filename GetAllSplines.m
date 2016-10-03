@@ -43,6 +43,10 @@ for i = 1:size(PointsJab,1)
 end
 
 %Print to File
+dlmwrite(UppercutFile, step);
+dlmwrite(JabFile, step);
 
-dlmwrite(UppercutFile, UpperCutSplines,delimiter);
-dlmwrite(JabFile,JabSplines, delimiter);
+write_UpperCutSplines = transpose(UpperCutSplines);
+write_JabSplines = transpose(JabSplines);
+dlmwrite(UppercutFile, write_UpperCutSplines,'-append', 'delimiter', delimiter);
+dlmwrite(JabFile,write_JabSplines, '-append','delimiter', delimiter);
