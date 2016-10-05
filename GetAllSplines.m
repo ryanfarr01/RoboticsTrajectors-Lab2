@@ -1,7 +1,27 @@
-tfinal = 5;
-tmid = 2.5;
-step = 0.02;
+% GetAllSplines   Gets the trajectories for the uppercut and jab
+%  
+%	Run - Calculates the trajectories for each of the 7 dimensions for each
+%	punch (uppercut and jab) and outputs them as text files. Optionally
+%	also plots each of the dimensions.
+%  
+%	tfinal = last time, which corresponds to the last point in the
+%	trajectory
+%   tmid = mid time, which corresponds to the middle point in the
+%   trajectory points
+%   step = time step to be used when calculating trajectories
+%   plot_graphs = boolean that plots if true
+%  
+%	Shane Baca, Devin Taylor, Ryan Baker, Ryan Farr
+%	CS 5310/ME 5220 Introduction to Robotics
+%	October 4th, 2016
 
+%parameters
+tfinal = 3;
+tmid = 1.5;
+step = 0.02;
+plot_graphs = true;
+
+%Output file names
 UppercutFile = 'UpperCutSplines.txt';
 JabFile = 'JabSplines.txt';
 delimiter = ',';
@@ -30,25 +50,57 @@ disp(PointsJab);
 
 %Real Code
 
-t = 0:0.02:5.02;
+%time for plots
+t = 0:step:tfinal + step;
 
+%Calculate the uppercut trajectory and plot
 UpperCutSplines = [];
 for i = 1:size(PointsUppercut,1)
     [spline] = makespline(PointsUppercut(i,:),tmid, tfinal,step );
     UpperCutSplines = [UpperCutSplines;spline];
     % These plot the joint angles for the upper cut
-    % figure
-    % plot(t,spline);
+    if plot_graphs == true
+        if i == 1
+            figure
+            
+            plot(t,spline);
+            title('Trajectory in each dimension over time for Uppercut');
+            xlabel('Time');
+            ylabel('Value');
+           hold on 
+        else
+            plot(t, spline);
+        end
+    end
 end
 
+if plot_graphs
+    legend('dimension 1', 'dimension 2', 'dimension 3', 'dimension 4', 'dimension 5', 'dimension 6', 'dimension 7');
+    hold off
+end
 
+%Calculate the jab trajectories and plot
 JabSplines = [];
 for i = 1:size(PointsJab,1)
     [spline] = makespline(PointsJab(i,:),tmid, tfinal,step );
     JabSplines = [JabSplines;spline];
     % These plot the joint angles for the jab
-    % figure
-    % plot(t,spline);
+    if plot_graphs == true
+        if i == 1
+            figure
+            plot(t,spline);
+            title('Trajectory in each dimension over time for Jab');
+            xlabel('Time');
+            ylabel('Value');
+            hold on
+        else
+            plot(t, spline);
+        end
+    end
+end
+
+if plot_graphs
+    legend('dimension 1', 'dimension 2', 'dimension 3', 'dimension 4', 'dimension 5', 'dimension 6', 'dimension 7');
 end
 
 %Print to File
