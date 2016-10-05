@@ -1,5 +1,6 @@
-tfinal = 2;
-step = 0.01;
+tfinal = 5;
+tmid = 2.5;
+step = 0.02;
 
 UppercutFile = 'UpperCutSplines.txt';
 JabFile = 'JabSplines.txt';
@@ -29,17 +30,25 @@ disp(PointsJab);
 
 %Real Code
 
+t = 0:0.02:5.02;
+
 UpperCutSplines = [];
 for i = 1:size(PointsUppercut,1)
-    [spline] = makespline(PointsUppercut(i,:),tfinal,step );
+    [spline] = makespline(PointsUppercut(i,:),tmid, tfinal,step );
     UpperCutSplines = [UpperCutSplines;spline];
+    % These plot the joint angles for the upper cut
+    % figure
+    % plot(t,spline);
 end
 
 
 JabSplines = [];
 for i = 1:size(PointsJab,1)
-    [spline] = makespline(PointsJab(i,:),tfinal,step );
+    [spline] = makespline(PointsJab(i,:),tmid, tfinal,step );
     JabSplines = [JabSplines;spline];
+    % These plot the joint angles for the jab
+    % figure
+    % plot(t,spline);
 end
 
 %Print to File
