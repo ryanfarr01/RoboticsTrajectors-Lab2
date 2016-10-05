@@ -64,9 +64,9 @@ for i = 1:size(PointsUppercut,1)
             figure
             
             plot(t,spline);
-            title('Trajectory in each dimension over time for Uppercut');
-            xlabel('Time');
-            ylabel('Value');
+            title('Trajectory for each joint angle over time for Uppercut');
+            xlabel('Time (Seconds)');
+            ylabel('Angle (Radians)');
            hold on 
         else
             plot(t, spline);
@@ -75,7 +75,7 @@ for i = 1:size(PointsUppercut,1)
 end
 
 if plot_graphs
-    legend('dimension 1', 'dimension 2', 'dimension 3', 'dimension 4', 'dimension 5', 'dimension 6', 'dimension 7');
+    legend('Joint 1', 'Joint 2', 'Joint 3', 'Joint 4', 'Joint 5', 'Joint 6', 'Joint 7');
     hold off
 end
 
@@ -89,9 +89,9 @@ for i = 1:size(PointsJab,1)
         if i == 1
             figure
             plot(t,spline);
-            title('Trajectory in each dimension over time for Jab');
-            xlabel('Time');
-            ylabel('Value');
+            title('Trajectory for each joint angle over time for Jab');
+            xlabel('Time (Seconds)');
+            ylabel('Angle (Radians)');
             hold on
         else
             plot(t, spline);
@@ -100,7 +100,7 @@ for i = 1:size(PointsJab,1)
 end
 
 if plot_graphs
-    legend('dimension 1', 'dimension 2', 'dimension 3', 'dimension 4', 'dimension 5', 'dimension 6', 'dimension 7');
+    legend('Joint 1', 'Joint 2', 'Joint 3', 'Joint 4', 'Joint 5', 'Joint 6', 'Joint 7');
 end
 
 %Print to File
